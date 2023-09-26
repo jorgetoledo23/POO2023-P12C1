@@ -18,6 +18,16 @@ class Usuario:
         self.Seguidos.append(seguido)
         seguido.Seguidores.append(self)
 
+    def VerSeguidos(self):
+        print(f"Tienes {len(self.Seguidos)} Seguidos")
+        for x in self.Seguidos:
+            print(x.Username)
+
+    def VerSeguidores(self):
+        print(f"Tienes {len(self.Seguidores)} Seguidores")
+        for x in self.Seguidores:
+            print(x.Username)
+
     def Postear(self, desc, img, lugar):
         post = Post(self, img, lugar, desc)
         self.Posts.append(post)
