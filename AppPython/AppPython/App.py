@@ -6,6 +6,12 @@ while True:
     os.system("cls")
     print("{1} - Insertar Categoria")
     print("{2} - Listar Categorias")
+
+    #TASKS
+    print("{3} - Insertar nuevo Producto")
+    print("{4} - Listar Productos")
+
+
     print("{0} - Salir")
     op = input("Selecciona una Opcion: ")
 
