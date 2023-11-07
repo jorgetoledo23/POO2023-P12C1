@@ -63,5 +63,16 @@ class DAO:
             cat = Categoria(cod_categoria, nombre)
             categorias.append(cat)
         return categorias
+    
+    def FiltrarProductos(self, filtro:int) -> List[Categoria]:
+        cursor = self.cnx.cursor()
+        query = ("SELECT * FROM tbl_productos WHERE valor_unitario < %s")
+        data = (int(filtro),)
+        cursor.execute(query, data)
+        categorias:List[Categoria] = []
+        for (cod_categoria, nombre) in cursor:
+            cat = Categoria(cod_categoria, nombre)
+            categorias.append(cat)
+        return categorias
 
     
