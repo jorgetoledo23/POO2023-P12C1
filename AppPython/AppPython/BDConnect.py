@@ -29,10 +29,35 @@ class DAO:
         cursor.execute(query, data)
         self.cnx.commit()
 
+    def ActualizarCategoria(self, cat:Categoria):
+        cursor = self.cnx.cursor()
+        query = ("UPDATE tbl_categorias SET nombre = %s WHERE cod_categoria = %s;")
+        data = (cat.getNombreCategoria(), cat.getCodCategoria())
+        cursor.execute(query, data)
+        self.cnx.commit()
+
+    def EliminarCategoria(self, cod:int):
+        cursor = self.cnx.cursor()
+        query = ("DELETE FROM tbl_categorias WHERE cod_categoria = %s;")
+        data = (int(cod),)
+        cursor.execute(query, data)
+        self.cnx.commit()
+
     def LeerCategorias(self) -> List[Categoria]:
         cursor = self.cnx.cursor()
         query = ("SELECT * FROM tbl_categorias")
         cursor.execute(query)
+        categorias:List[Categoria] = []
+        for (cod_categoria, nombre) in cursor:
+            cat = Categoria(cod_categoria, nombre)
+            categorias.append(cat)
+        return categorias
+    
+    def FiltrarCategorias(self, filtro:str) -> List[Categoria]:
+        cursor = self.cnx.cursor()
+        query = ("SELECT * FROM tbl_categorias WHERE nombre LIKE CONCAT('%', %s, '%')")
+        data = (filtro,)
+        cursor.execute(query, data)
         categorias:List[Categoria] = []
         for (cod_categoria, nombre) in cursor:
             cat = Categoria(cod_categoria, nombre)
