@@ -1,5 +1,6 @@
 import os
 from Model.Categoria import Categoria
+from Model.Producto import Producto
 from BDConnect import DAO
 
 while True:
@@ -24,6 +25,26 @@ while True:
         category = Categoria(0, nombre)
         dao.InsertarCategoria(category)
         input("Categoria Insertada")
+
+    if(op == "3"):
+        os.system("cls")
+        for cat in dao.LeerCategorias():
+            print(f"{cat.getCodCategoria()} | {cat.getNombreCategoria()}")
+        cat = input("Selecciona la Categoria a la cual pertenece el Producto: ")
+        os.system("cls")
+        n = input("Ingresa Nombre del Producto: ")
+        d = input("Ingresa la Descripcion detalla del Producto: ")
+        v = input("Ingresa el Valor Unitario del Producto: ")
+        s = input("Ingresa el Stock disponible del Producto: ")
+        p = Producto(0, n, d, v, s, cat)
+        dao.InsertarProducto(p)
+        input("Producto Insertado! Presiona ENTER para continuar...")
+
+    if(op == "4"):
+        for prod in dao.LeerProductos():
+            print(f"{prod.getCodProducto()} | {prod.getNombre()} | {prod.getDescripcion()} | {prod.getValor()} | {prod.getStock()} | {prod.getCodCategoria()}")
+        input("Productos Listados... Presiona ENTER para continar")
+
 
     if(op == "2"):
         for cat in dao.LeerCategorias():
