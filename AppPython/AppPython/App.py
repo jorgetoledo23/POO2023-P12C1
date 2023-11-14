@@ -42,7 +42,7 @@ while True:
 
     if(op == "4"):
         for prod in dao.LeerProductos():
-            print(f"{prod.getCodProducto()} | {prod.getNombre()} | {prod.getDescripcion()} | {prod.getValor()} | {prod.getStock()} | {prod.getCodCategoria()}")
+            print(f"{prod.getCodProducto()} | {prod.getNombre()} | {prod.getDescripcion()} | {prod.getValor()} | {prod.getStock()} | {prod.getNombreCategoria()}")
         input("Productos Listados... Presiona ENTER para continar")
 
 

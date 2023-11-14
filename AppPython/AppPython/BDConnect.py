@@ -64,14 +64,15 @@ class DAO:
     def LeerProductos(self) -> List[Producto]:
         cursor = self.cnx.cursor()
         query = ("""select p.cod_producto, p.nombre, p.descripcion, 
-                p.valor_unitario, p.stock, c.nombre, p.cod_categoria
+                p.valor_unitario, p.stock, c.nombre as 'nombre_categoria', p.cod_categoria
                 from tbl_productos p
                 inner join tbl_categorias c 
                 on p.cod_categoria = c.cod_categoria""")
         cursor.execute(query)
         productos:List[Producto] = []
-        for (cod_producto, nombre, descripcion, valor_unitario, stock, cod_categoria) in cursor:
+        for (cod_producto, nombre, descripcion, valor_unitario, stock, nombre_categoria, cod_categoria) in cursor:
             prod = Producto(cod_producto, nombre, descripcion, valor_unitario, stock, cod_categoria)
+            prod.setNombreCategoria(nombre_categoria)
             productos.append(prod)
         return productos
     

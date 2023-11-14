@@ -9,6 +9,7 @@ class Producto:
         self.__Valor = valor
         self.__Stock = stock
         self.__Cod_Categoria = cod_cat
+        self.__NombreCategoria = None
 
     def getCodProducto(self)->int:
         return self.__Cod_Producto
@@ -30,3 +31,9 @@ class Producto:
     
     def getCodCategoria(self)->int:
         return self.__Cod_Categoria
+    
+    def getNombreCategoria(self)->str:
+        return self.__NombreCategoria
+    
+    def setNombreCategoria(self, nombrecategoria):
+        self.__NombreCategoria = nombrecategoria
